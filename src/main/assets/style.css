@@ -1,6 +1,6 @@
 body {
   font-family: "Slabo 27px", sans-serif;
-  /* background: url(../pattern.jpg) repeat; */
+  background: url(./pattern.jpg) repeat;
   margin: 0;
 }
 
@@ -35,6 +35,8 @@ nav {
 nav ul {
   list-style: none;
   margin-right: 30px;
+  margin-top: 10px;
+  vertical-align: center;
 }
 
 nav ul li {
@@ -93,11 +95,26 @@ footer#child {
   border-radius: 5px;
 }
 
-tr {
-  text-align: left;
+table {
+  border-collapse: collapse;
+  width: 100%;
+
 }
 
-td {
-  vertical-align: top;
-  padding: 10px;
+th {
+  background-color: antiquewhite;
+}
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
+
+td,th {
+  vertical-align: center;
+  text-align: left;
+  padding: 20px;
+  margin: 20px;
+}
+
+td.button {
+  text-align: left;
 }

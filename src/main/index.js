@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
 import "./assets/style.css";
 import logo from "./assets/logo.png"; //bcos inline relative paths wont work unless u put it in 'public'
-import Axios from "axios";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button'
 
 import { AuthContext, AuthProvider } from "../components/authcontext";
 
 export const Navbar = () => {
   const [user, setUser] = useContext(AuthContext);
+
+  const handleLogout = e => {
+    e.preventDefault()
+    setUser(false)
+  }
 
   return (
     <>
@@ -34,6 +40,12 @@ export const Navbar = () => {
                 <Link to="/login">Login</Link>
               )}
             </li>
+            <li>
+              {user ? (
+                <Button variant="secondary" size="sm" onClick={handleLogout}>Logout</Button>
+              ) : ""
+              }
+            </li>
           </ul>
         </nav>
       </header>
@@ -50,7 +62,7 @@ export class Home extends React.Component {
 
   componentDidMount = () => {
     if (this.state.dataFilm == null) {
-      Axios.get(`http://backendexample.sanbercloud.com/api/movies`)
+      axios.get(`http://backendexample.sanbercloud.com/api/movies`)
         .then((res) => {
           let data = res.data.map((el) => {
             return {
@@ -85,16 +97,16 @@ export class Home extends React.Component {
       <>
         <section>
           <h1>Daftar Film Film Terbaik</h1>
-          <div id="article-list">
+          <div style={{display: "flex", flexWrap: "wrap"}} id="article-list">
             {this.state.dataFilm !== null &&
               this.state.dataFilm.map((datum) => {
                 return (
-                  <div>
-                    <img style={{float: left}} src={datum.pic} />
-                    <div class="desc-box">
+                  <div style={{width: "30%",margin: "10px"}}>
+                    <img style={{objectFit: "contain", width:"100px", height:"100px"}}  src={datum.pic} />
+                    <div className="desc-box">
                     <h2>{datum.title}</h2>
                     <p>
-                      <strong>Rating: {datum.duration}</strong>
+                      <strong>Duration: {datum.duration}</strong>
                     </p>
                     <p>
                       <strong>Genre: {datum.genre}</strong>
@@ -102,7 +114,7 @@ export class Home extends React.Component {
                     <p>
                       <strong>Tahun Release: {datum.year}</strong>
                     </p>
-                    <p class="desc">Deskripsi: {datum.description}</p>
+                    <p className="desc">Deskripsi: {datum.description}</p>
                     </div>
                   </div>
                 );
@@ -117,77 +129,4 @@ export class Home extends React.Component {
   }
 }
 
-// export const Home = () => {
-//   return (
-//     <>
-//       <section>
-//         <h1>Featured Posts</h1>
-//         <div id="article-list">
-//           <div>
-//             <a href="">
-//               <h3>Lorem Post 1</h3>
-//             </a>
-//             <p>
-//               Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-//               labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-//               eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-//               delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-//               Etiam placerat eam in.
-//             </p>
-//           </div>
-//           <div>
-//             <a href="">
-//               <h3>Lorem Post 2</h3>
-//             </a>
-//             <p>
-//               Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-//               labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-//               eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-//               delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-//               Etiam placerat eam in.
-//             </p>
-//           </div>
-//           <div>
-//             <a href="">
-//               <h3>Lorem Post 3</h3>
-//             </a>
-//             <p>
-//               Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-//               labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-//               eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-//               delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-//               Etiam placerat eam in.
-//             </p>
-//           </div>
-//           <div>
-//             <a href="">
-//               <h3>Lorem Post 4</h3>
-//             </a>
-//             <p>
-//               Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-//               labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-//               eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-//               delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-//               Etiam placerat eam in.
-//             </p>
-//           </div>
-//           <div>
-//             <a href="">
-//               <h3>Lorem Post 5</h3>
-//             </a>
-//             <p>
-//               Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-//               labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-//               eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-//               delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-//               Etiam placerat eam in.
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-//       <footer>
-//         <h5>&copy; Copyright 2020 by Sanbercode</h5>
-//       </footer>
-//     </>
-//   );
-// };
+
