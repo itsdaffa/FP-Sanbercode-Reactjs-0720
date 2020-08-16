@@ -29,25 +29,15 @@ header img {
   display: inline-block;
 }
 
-nav {
-  float: right;
-}
-nav ul {
-  list-style: none;
-  margin-right: 30px;
-  margin-top: 10px;
-  vertical-align: center;
-}
 
-nav ul li {
-  display: flex;
-  float: left;
-  margin: 0 15px 0 0;
-}
+
+
 
 section {
-  max-width: 70%;
-  margin: 100px auto auto auto;
+  box-sizing: border-box;
+  width: 70%;
+  margin-top: 100px;
+  /* margin: 100px auto auto auto; */
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 33px rgba(16, 14, 23, 0.33);
@@ -117,4 +107,38 @@ td,th {
 
 td.button {
   text-align: left;
+}
+
+/* HEADER */
+.login {
+  float: right;
+  margin-top: 10px;
+  margin-right: 50px;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+  background-color: yellow;
+  width: fit-content;
+  box-sizing: border-box;
+  margin-top: 50px;
+  float: left;
+  z-index: -1;
+  width: 30%;
+}
+
+
+nav ul {
+  list-style: none;
+  margin-top: 10px;
+  vertical-align: center;
+}
+
+nav ul li {
+  width: fit-content;
+  display: block;
+  margin-right: 0;
+
 }

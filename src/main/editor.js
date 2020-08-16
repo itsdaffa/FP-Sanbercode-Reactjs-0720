@@ -3,6 +3,8 @@ import axios from "axios"
 import {AuthContext} from '../components/authcontext'
 import Button from 'react-bootstrap/Button'
 
+import {Link} from 'react-router-dom'
+
 const Editor = (props) => {
   const [dataFilm, setDataFilm] = useState(null)
   const [edit, setEdit] = useState(false)
@@ -168,10 +170,11 @@ const Editor = (props) => {
                   {datum.rating}
                 </td>
                 <td>
-                  {datum.description}
+                  {datum.description !== null && datum.description.length > 50 ? `${datum.description.substring(0,50)}...` : datum.description}
                 </td>
                 <td className="button">
-                  <Button onClick={handleEdit} value={datum.id} style={{marginBottom: "5px"}} variant="primary">Edit</Button><br />
+                  <Link to={`/edit/movies/${datum.id}`}><Button variant="primary">Edit</Button></Link>
+                  {/* <Button onClick={handleEdit} value={datum.id} style={{marginBottom: "5px"}} variant="primary">Edit</Button><br /> */}
                   <Button onClick={handleDelete} value={datum.id} variant="danger">Delete</Button>
                 </td>
               </tr>
