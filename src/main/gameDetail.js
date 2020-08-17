@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import {Link, useParams} from 'react-router-dom'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
+import {useHistory} from 'react-router'
 
 
 
 const GameDetail = () => {
     let {id} = useParams()
     const [game, setGame] = useState(null)
+    const history = useHistory()
 
     useEffect( () => {
         if (game === null) {
@@ -31,7 +33,7 @@ const GameDetail = () => {
                     <p>Multiplayer: {game.multiplayer === 1 ? "✅" : "❌"}</p>
                     <p>Platform: {game.platform}</p>
                     <p>Release: {game.release}</p>
-                    <Link to="/games"><Button >Back</Button></Link>
+                    <Button size="sm" type="secondary" onClick={() => history.goBack()}>Back</Button>
                 </section>
 
             )}
