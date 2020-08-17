@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 import {useHistory} from 'react-router'
 import axios from 'axios'
+import Button from 'react-bootstrap/Button'
 
 
 const MovieDetail = () => {
@@ -33,7 +34,7 @@ const MovieDetail = () => {
                     <p className="desc">Deskripsi: {movie.description}</p>
                     <p>Review: </p>
                     <p>{movie.review}</p>
-                    <Button size="sm" type="secondary" onClick={() => history.goBack()}>Back</Button>
+                    <Button size="sm" type="secondary" onClick={() => history.goBack()}>← Back</Button>
                 </section>
             )}
        </>
