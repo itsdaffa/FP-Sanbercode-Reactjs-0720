@@ -113,6 +113,7 @@ aside {
 
 aside a {
   transition: 0.3s;
+  color: #E9CE87;
 }
 aside a:hover {
   text-decoration: none;
@@ -137,6 +138,12 @@ section {
 .loginBox .form-control {
   width: 30%;
 }
+
+img.detail {
+  max-width: 100%;
+
+}
+
 
 /* FOOTER */
 

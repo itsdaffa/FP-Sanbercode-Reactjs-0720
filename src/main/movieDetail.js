@@ -25,7 +25,7 @@ const MovieDetail = () => {
         <>
             {movie !== null && (
                 <section>
-                    <img src={movie.image_url} />
+                    <img className="detail" src={movie.image_url} />
                     <h1>{movie.title}</h1>
                     <h2>⭐{movie.rating}</h2>
                     <p>Genre: {movie.genre}</p>

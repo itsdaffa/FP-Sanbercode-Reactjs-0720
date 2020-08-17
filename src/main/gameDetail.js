@@ -27,7 +27,7 @@ const GameDetail = () => {
         <>
             {game !== null && (
                 <section>
-                    <img src={game.image_url} />
+                    <img className="detail" src={game.image_url} />
                     <h1 style={{textAlign: "left"}}>{game.name}</h1>
                     <p>Genre: {game.genre}</p>
                     <p>Single Player: {game.singlePlayer === 1 ? "✅" : "❌"}</p>
