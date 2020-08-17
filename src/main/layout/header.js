@@ -24,7 +24,7 @@ const Header = () => {
     }
   
     return (
-      <>
+  
         <header>
           <img alt="Sanbercode logo" id="logo" src={logo} width="200px" />
           <nav className="login">
@@ -39,9 +39,6 @@ const Header = () => {
           </nav>
         </header>
 
-
-    
-      </>
     );
   };
 

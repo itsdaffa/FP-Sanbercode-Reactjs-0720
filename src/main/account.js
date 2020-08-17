@@ -14,19 +14,21 @@ const Account = () => {
             axios.put(`https://backendexample.sanbersy.com/api/users/${user.id}`, {...user, password: input.password})
             .then( res => { console.log(res)
             if (res.data.id) {
-                setUser( {
-                id: res.data.id,
-                username: res.data.username,
-                password: res.data.password
+                setUser({
+                    id: res.data.id,
+                    username: res.data.username,
+                    password: res.data.password
                 })
                 localStorage.setItem(
-                "user",
-                JSON.stringify(res.data)
+                    "user",
+                    JSON.stringify(res.data)
                 )
+                alert("Yayyy, berhasil ganti password!")
             }
             })
             .catch( err => console.log(err))
-            alert("Yayyy, berhasil ganti password!")
+            setInput({oldpass:"", password: ""})
+            
         } else {
             alert("Maaf, password salah")
         }

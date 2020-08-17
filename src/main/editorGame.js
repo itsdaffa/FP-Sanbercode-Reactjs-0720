@@ -2,16 +2,31 @@ import React, {useContext, useEffect, useState} from "react";
 import axios from "axios"
 import {AuthContext} from '../components/authcontext'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 import BootstrapTable from 'react-bootstrap-table-next';
 import filterFactory, { numberFilter, multiSelectFilter } from 'react-bootstrap-table2-filter';
-
-
-
 import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router'
 
 
 const EditorGame = (props) => {
   const [dataGame, setDataGame] = useState(null)
+  const [search, setSearch] = useState({query: ""})
+  const history = useHistory()
+
+  const handleSearch = (e) => {
+    const {name, value} = e.target
+    setSearch((prevState) => ({
+      ...prevState, 
+      [name]: value
+    }))
+  }
+
+  const filtered = (
+    search.query === "" 
+    ? dataGame 
+    : dataGame.filter(x => x.title.toLowerCase().includes(search.query.toLowerCase()))
+  )
 
   const handleDelete = (e) => {
     let id = Number(e.target.value)
@@ -42,8 +57,14 @@ const EditorGame = (props) => {
     return(<img style={{objectFit: "contain", width:"100px", height:"100px"}} src={row.image_url} />)
   }
 
-  const textFormatter = (cell, row) => {
-    return(row.description !== null && row.description.length > 50 ? `${row.description.substring(0,50)}...` : row.description)
+  const boolFormatter = (cell, row) => {
+      if (cell===1) {
+          return("Yes")
+      } else if (cell===0) {
+          return("No") 
+      } else {
+          return cell
+      }
   }
 
   const columnsGame = [{
@@ -65,14 +86,16 @@ const EditorGame = (props) => {
     sort: true,
     filter: multiSelectFilter({
         options: selectOptions
-    })
+    }),
+    formatter: boolFormatter
   }, {
     dataField: 'multiplayer',
     text: 'Multiplayer?',
     sort: true,
     filter: multiSelectFilter({
         options: selectOptions
-    })
+    }),
+    formatter: boolFormatter
   }, {
     dataField: 'button',
     text: 'Actions',
@@ -110,14 +133,14 @@ const EditorGame = (props) => {
   }) 
 
   return (
-    <>
+    
     <section>
-      {dataGame !== null &&  <BootstrapTable keyField='id' data={ dataGame } columns={ columnsGame } filter={ filterFactory() }/>}
+        <Button onClick={() => history.push('/create/games')}>Tambahkan Game</Button>
+        <Form.Control className="search" type="text" onChange={handleSearch} name="query" value={search.query} placeholder="Cari judul..." />
+      {dataGame !== null &&  <BootstrapTable bootstrap4 keyField='id' data={ dataGame } columns={ columnsGame } filter={ filterFactory() }/>}
     </section>
-    <section>
-
-    </section>
-    </>
+ 
+    
   )
 }
 

@@ -38,7 +38,10 @@ const MovieEdit = () => {
         e.preventDefault()
         axios
         .put(`https://backendexample.sanbersy.com/api/movies/${id}`, input)
-        .then(res => console.log(res) )
+        .then(res => {
+            console.log(res)
+            history.goBack()
+        })
         .catch(err => console.log(err) )
         
     }
@@ -96,7 +99,7 @@ const MovieEdit = () => {
                 </tr>
                 <br/>
                 <tr>
-                    <Button type="submit" href="/editor">Submit</Button>
+                    <Button type="submit">Submit</Button>
                 </tr>
                 </tbody>
           

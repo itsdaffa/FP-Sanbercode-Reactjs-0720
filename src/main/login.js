@@ -57,23 +57,23 @@ const Login = (props) => {
   
   return (
     <>
-
-    <section style={{width: "fit-content"}}>
+    <section>
+    <section className="loginBox">
       <h1>Login</h1>
       <Form onSubmit={handleLogin} style={{margin: "auto"}}>
         <Form.Group controlID="user">
           <Form.Label>Username:</Form.Label>
-          <Form.Control type="text" name="username" value={input.username} onChange={handleChange} placeholder="Enter username" />
+          <Form.Control size="lg" type="text" name="username" value={input.username} onChange={handleChange} placeholder="Enter username" />
         </Form.Group>
 
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="password" value={input.password} onChange={handleChange} placeholder="EnterPassword"  />
+          <Form.Control size="lg" type="password" name="password" value={input.password} onChange={handleChange} placeholder="Enter password"  />
         </Form.Group>
-        <Button variant="primary" type="submit"> Login </Button>
+        <Button size="lg" variant="primary" type="submit"> Login </Button>
       </Form>
     </section>
-    <section style={{width: "fit-content"}}>
+    <section className="loginBox" >
       <h2>Belum punya akun? Register aja!</h2>
       <Form onSubmit={handleRegister} style={{margin: "auto"}}>
         <Form.Group controlID="user">
@@ -83,10 +83,11 @@ const Login = (props) => {
 
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="regPassword" value={input.regPassword} onChange={handleChange} placeholder="Enter Password"  />
+          <Form.Control type="password" name="regPassword" value={input.regPassword} onChange={handleChange} placeholder="Enter password"  />
         </Form.Group>
-        <Button variant="primary" type="submit"> Register </Button>
+        <Button variant="secondary" type="submit"> Register </Button>
       </Form>
+    </section>
     </section>
 
     </>
