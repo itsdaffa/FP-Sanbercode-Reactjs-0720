@@ -4,7 +4,8 @@ import Routes from "./components/routes";
 import {AuthProvider} from './components/authcontext'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProtectedRoute from "./components/protectedroute";
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+
 
 export default function App() {
   return (

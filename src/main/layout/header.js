@@ -1,17 +1,26 @@
 import React, { useContext } from "react";
 
+import {Switch, Route} from "react-router"
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button'
 import logo from "../assets/logo.png"; //bcos inline relative paths wont work unless u put it in 'public'
-
 import { AuthContext} from "../../components/authcontext";
+
+
 
 const Header = () => {
     const [user, setUser] = useContext(AuthContext);
+
+    const handleLogin = e => {
+      e.preventDefault()
+      console.log(user)
+      setUser(true)
+    }
   
     const handleLogout = e => {
       e.preventDefault()
       setUser(false)
+      localStorage.removeItem("user")
     }
   
     return (
@@ -29,6 +38,8 @@ const Header = () => {
 
           </nav>
         </header>
+
+
     
       </>
     );

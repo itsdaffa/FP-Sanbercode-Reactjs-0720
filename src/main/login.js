@@ -10,42 +10,85 @@ const Login = (props) => {
   const [user, setUser] = useContext(AuthContext)
   const [input, setInput] = useState({username: "", password: ""})
   const history = useHistory()
-  console.log(useContext(AuthContext))
+
+  const handleChange = e => {
+    console.log(input)
+    setInput(
+      {...input,[e.target.name]:e.target.value}
+    )
+  }
 
   const handleLogin = e => {
     e.preventDefault()
-    axios.post('https://backendexample.sanbersy.com/api/login', input)
-    .then( res => console.log(res))
-    .catch( err => console.log(err))
+    axios.post('https://backendexample.sanbersy.com/api/login', {username: input.username, password: input.password})
+    .then( res => { console.log(res)
+      if (res.data.id) {
+        setUser( {
+          id: res.data.id,
+          username: res.data.username,
+          password: res.data.password
+        })
+        localStorage.setItem(
+          "user",
+          JSON.stringify(res.data)
+        )
+      } else {
+        alert(res.data)
+      }
+    })
+    .catch( err => console.log(err) )
+    history.push('/')
   }
 
-  const handleChange = e => {
-    const name = e.target.name
-    const value = e.target.value
-    
-    setInput(
-      {...input, [name]:value}
-    )
-
+  const handleRegister = e => {
+    e.preventDefault()
+    axios.post('https://backendexample.sanbersy.com/api/users', {username: input.regUsername, password: input.regPassword})
+    .then( res => {
+      if (res.data.id) {
+        alert("Yay, berhasil daftar!")
+      } else {
+        alert(`Error: ${res.data}`)
+      }
+    })
+    .catch(err => console.log(err))
+    history.push('/login')
   }
+
   
   return (
     <>
 
     <section style={{width: "fit-content"}}>
-    <Form onSubmit={handleLogin} style={{margin: "auto"}}>
-      <Form.Group controlID="user">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control type="text" name="username" value={input.username} onChange={handleChange} placeholder="Enter username" />
-      </Form.Group>
+      <h1>Login</h1>
+      <Form onSubmit={handleLogin} style={{margin: "auto"}}>
+        <Form.Group controlID="user">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control type="text" name="username" value={input.username} onChange={handleChange} placeholder="Enter username" />
+        </Form.Group>
 
-      <Form.Group controlId="password">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" name="password" value={input.password} onChange={handleChange} placeholder="Password"  />
-      </Form.Group>
-      <Button variant="primary" type="submit"> Login </Button>
-    </Form>
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" name="password" value={input.password} onChange={handleChange} placeholder="EnterPassword"  />
+        </Form.Group>
+        <Button variant="primary" type="submit"> Login </Button>
+      </Form>
     </section>
+    <section style={{width: "fit-content"}}>
+      <h2>Belum punya akun? Register aja!</h2>
+      <Form onSubmit={handleRegister} style={{margin: "auto"}}>
+        <Form.Group controlID="user">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control type="text" name="regUsername" value={input.regUsername} onChange={handleChange} placeholder="Enter username" />
+        </Form.Group>
+
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" name="regPassword" value={input.regPassword} onChange={handleChange} placeholder="Enter Password"  />
+        </Form.Group>
+        <Button variant="primary" type="submit"> Register </Button>
+      </Form>
+    </section>
+
     </>
   );
 };

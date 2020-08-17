@@ -15,6 +15,7 @@ const MovieEdit = () => {
             axios.get(`https://backendexample.sanbersy.com/api/movies/${id}`)
             .then( 
                 res =>  {setInput({
+                        image_url: res.data.image_url,
                         id: id,
                         title: res.data.title,
                         rating: res.data.rating,
@@ -57,13 +58,21 @@ const MovieEdit = () => {
             <form onSubmit={handleSubmit} id="entry">
                 <tbody>
                 <tr>
-                    <td><label htmlFor="title">Title: </label></td>
+                    <td><label htmlFor="pic">Image URL: </label></td>
+                    <td><input type="text" id="pic" name="image_url" placeholder="URL" value={input.image_url} onChange={handleChange} /></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor="title">Name: </label></td>
                     <td><input type="text" id="title" name="title" placeholder="Jumanju" value={input.title} onChange={handleChange} /></td>
                 </tr>
                 <br />
                 <tr>
                     <td><label htmlFor="description">Description: </label></td>
                     <td><textarea form="entry" name="description" placeholder="Tulis apa gitu di sini" value={input.description} onChange={handleChange}/></td>
+                </tr>
+                <tr>
+                <td><label htmlFor="review">Review: </label></td>
+                <td><textarea form="entry" name="review" placeholder="Tulis apa gitu di sini" value={input.review} onChange={handleChange}/></td>    
                 </tr>
                 <br />
                 <tr>

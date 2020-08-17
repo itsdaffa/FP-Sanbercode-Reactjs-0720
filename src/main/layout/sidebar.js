@@ -6,7 +6,7 @@ import {AuthContext} from '../../components/authcontext'
 const Sidebar = () => {
     const [user, setUser] = useContext(AuthContext);
     return (
-    <div className="sidebar">
+    <aside className="sidebar">
         <nav>
             <ul>
                 <li>
@@ -15,25 +15,21 @@ const Sidebar = () => {
                 <li>
                     <Link to="/games">Games</Link>
                 </li>
-    
-                <li>
-                    <Link to="/about">About</Link>
-                </li>
-    
-                <li>
-                    <Link to="/contact">Contact</Link>
-                </li>
-    
-                
-                    {user ? (
-                    <li><Link to="/editor">Editor</Link></li>
-                    ) : (
+
+
+                {user ? (
+                    <>
+                    <li><Link to="/account">Account</Link></li>
+                    <li><Link to="/edit/movies">Edit Movies</Link></li>
+                    <li><Link to="/edit/games">Edit Games</Link></li>
+
+                    </>
+                ) : (
                     ""
-                    )}
-                
+                )}
             </ul>
         </nav>
-    </div>
+    </aside>
     )
 
 }

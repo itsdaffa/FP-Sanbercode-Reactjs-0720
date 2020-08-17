@@ -46,7 +46,7 @@ export default class GameList extends React.Component {
   render() {
     return (
       <>
-        <section class="container">
+        <section>
           <h1>Best Games</h1>
           <div style={{display: "flex", flexWrap: "wrap"}} id="article-list">
             {this.state.dataGame !== null &&

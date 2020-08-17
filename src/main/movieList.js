@@ -45,7 +45,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <>
-        <section class="container">
+        <section>
           <h1>Best Movies</h1>
           <div style={{display: "flex", flexWrap: "wrap"}} id="article-list">
             {this.state.dataFilm !== null &&
