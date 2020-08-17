@@ -84,7 +84,7 @@ const EditorGame = (props) => {
   useEffect( ()=> {
     if (dataGame === null) {
       axios
-        .get(`http://backendexample.sanbercloud.com/api/games`)
+        .get(`https://backendexample.sanbersy.com/api/games`)
         .then( res => {
           setDataGame(
             res.data.map(el => { 

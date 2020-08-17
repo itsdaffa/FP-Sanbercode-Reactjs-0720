@@ -12,7 +12,7 @@ export default class Home extends React.Component {
 
   componentDidMount = () => {
     if (this.state.dataFilm == null) {
-      axios.get(`https://backendexample.sanbercloud.com/api/movies`)
+      axios.get(`https://backendexample.sanbersy.com/api/movies`)
         .then((res) => {
           let data = res.data.map((el) => {
             return {

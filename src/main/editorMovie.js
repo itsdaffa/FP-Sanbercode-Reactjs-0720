@@ -171,7 +171,7 @@ const Editor = (props) => {
   useEffect( ()=> {
     if (dataFilm === null) {
       axios
-        .get(`http://backendexample.sanbercloud.com/api/movies`)
+        .get(`https://backendexample.sanbersy.com/api/movies`)
         .then( res => {
           setDataFilm(
             res.data.map(el => { 
