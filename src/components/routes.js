@@ -68,11 +68,13 @@ const Routes = () => {
                 <Route exact path="/edit/games" component={EditorGame} />
                 <Route exact path="/edit/games/:id" component={GameEdit} />
                 <Route exact path="/create/games" component={GameCreate} />
+
+                <Route exact path="/account" component={Account} />
                 </>
               ) : ("") }
 
 
-                <Route exact path="/account" component={Account} />
+                
                 <Route exact path = "/login" handleLogin={handleLogin} 
                   render={props => <Login {...props} user={user} handleLogin={handleLogin} />} />
 

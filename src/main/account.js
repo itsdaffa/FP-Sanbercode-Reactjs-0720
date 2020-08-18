@@ -42,7 +42,6 @@ const Account = () => {
 
     return(
         <>
-        {user &&
         <section>
             <h1 style={{textAlign: "left"}}>Hai, {user.username}!</h1>
             <h2 style={{marginTop: "50px"}}>Ganti Password</h2>
@@ -60,7 +59,6 @@ const Account = () => {
             <Button variant="primary" type="submit"> Change Password </Button>
             </Form>
         </section>
-        }
         </>
     )
 }
