@@ -137,7 +137,7 @@ const EditorGame = (props) => {
     <section>
         <Button onClick={() => history.push('/create/games')}>Tambahkan Game</Button>
         <Form.Control className="search" type="text" onChange={handleSearch} name="query" value={search.query} placeholder="Cari judul..." />
-      {dataGame !== null &&  <BootstrapTable bootstrap4 keyField='id' data={ dataGame } columns={ columnsGame } filter={ filterFactory() }/>}
+      {dataGame !== null &&  <BootstrapTable bootstrap4 keyField='id' data={ filtered } columns={ columnsGame } filter={ filterFactory() }/>}
     </section>
  
     
