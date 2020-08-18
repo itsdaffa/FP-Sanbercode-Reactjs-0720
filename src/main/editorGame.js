@@ -25,7 +25,7 @@ const EditorGame = (props) => {
   const filtered = (
     search.query === "" 
     ? dataGame 
-    : dataGame.filter(x => x.title.toLowerCase().includes(search.query.toLowerCase()))
+    : dataGame.filter(x => x.name.toLowerCase().includes(search.query.toLowerCase()))
   )
 
   const handleDelete = (e) => {
