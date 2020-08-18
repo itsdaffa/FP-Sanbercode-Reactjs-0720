@@ -45,6 +45,10 @@ const MovieCreate = () => {
             <h2>Tambahkan Entri</h2>
             <form onSubmit={handleSubmit} id="entry">
               <tbody>
+                <tr>
+                <td><label htmlFor="pic">Image URL: </label></td>
+                <td><input type="text" id="pic" name="image_url" placeholder="URL" value={input.image_url} onChange={handleChange} /></td>
+                </tr>
               <tr>
                 <td><label htmlFor="title">Name: </label></td>
                 <td><input type="text" id="title" name="title" placeholder="Jumanju" value={input.title} onChange={handleChange} /></td>
